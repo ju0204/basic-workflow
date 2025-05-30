@@ -1,0 +1,20 @@
+### github-github-variable-03.yml
+
+name: Test Github Actions-03
+run-name: Run Github Actions var, secret
+on: 
+  workflow_dispatch
+
+jobs:
+  check-vars-context:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: "Hello, var_Test"
+      - run: echo "Hello, ${{ vars.VAR_TEST }}"
+
+  check-secret-context:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: "Hello, secret_Test"
+      - run: echo "Hello, ${{ secret.SECRET_TEST }}"
+      
