@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       name:
-        description: '이름을 입력하세요'
+        description: '이름-영소문자'
         required: true
         default: 'input'
 
@@ -21,7 +21,8 @@ jobs:
         run: echo "result=$(echo '${{ github.event.inputs.name }}' | tr 'a-z' 'A-Z')" >> $GITHUB_OUTPUT
 
   output-data:
+    needs: input-data
     runs-on: ubuntu-latest
     steps:
       - name: Print output data
-        run: ehco "Hello, ${{ needs.input.outputs.upper_name }}"
+        run: echo "Hello, ${{ needs.input-data.outputs.upper_name }}"
