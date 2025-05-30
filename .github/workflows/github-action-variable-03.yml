@@ -1,20 +1,34 @@
-### github-github-variable-03.yml
+### github-action-variable-01.yml
 
-name: Test Github Actions-03
-run-name: Run Github Actions var, secret
+name: Test Github Actions variable-01
 on: 
   workflow_dispatch
 
+env:
+  DAY_ON_WEEK: Friday
+  
 jobs:
-  check-vars-context:
+  check-var:
     runs-on: ubuntu-latest
-    steps: 
-      - name: "Hello, var_Test"
-      - run: echo "Hello, ${{ vars.VAR_TEST }}"
+    env:
+      MESSAGE: Hello
+    steps:
+      - name: "It's Day"
+        if: ${{ env.DAY_ON_WEEK == 'Monday'}} 
+        run: echo "$MESSAGE, Today is $DAY_ON_WEEK!"
 
-  check-secret-context:
+  check-var2:
     runs-on: ubuntu-latest
-    steps: 
-      - name: "Hello, secret_Test"
-      - run: echo "Hello, ${{ secret.SECRET_TEST }}"
+    steps:
+      - name: "It's Day"
+        run: echo "$MESSAGE, Today is $DAY_ON_WEEK!"
+        
+  check-var3:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        fruits: [apple, banana, kiwi]
+    steps:
+      - name: "It's fruits"
+        run: echo "Hello,${{ matrix.fruits }}"
       
