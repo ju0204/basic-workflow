@@ -1,17 +1,33 @@
-name: Test Github Actions-04
-run-name: Run Github Actions inputs, outputs, needs
+### github-action-variable-01.yml
 
-on:
-  workflow_dispatch:
-    inputs:
-      name:
-        description: '이름'
-        required: true
-        default: 'INPUT'
+name: Test Github Actions variable-01
+on: 
+  workflow_dispatch
 
+env:
+  DAY_ON_WEEK: Friday
+  
 jobs:
-  input-data:
+  check-var:
+    runs-on: ubuntu-latest
+    env:
+      MESSAGE: Hello
+    steps:
+      - name: "It's Day"
+        if: ${{ env.DAY_ON_WEEK == 'Monday'}} 
+        run: echo "$MESSAGE, Today is $DAY_ON_WEEK!"
+
+  check-var2:
     runs-on: ubuntu-latest
     steps:
-      - name: Print input data
-        run: echo "Hello, ${{ github.event.inputs.name }}"
+      - name: "It's Day"
+        run: echo "$MESSAGE, Today is $DAY_ON_WEEK!"
+        
+  check-var3:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        fruits: [apple, banana, kiwi]
+    steps:
+      - name: "It's fruits"
+        run: echo "Hello,${{ matrix.fruits }}"
