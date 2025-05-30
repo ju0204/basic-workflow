@@ -1,6 +1,6 @@
-### github-action-variable-01.yml
+### github-action-variable-04.yml
 
-name: Test Github Actions variable-01
+name: Test Github Actions variable-04
 on: 
   workflow_dispatch
 
