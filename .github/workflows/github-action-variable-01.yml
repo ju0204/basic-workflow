@@ -15,3 +15,10 @@ jobs:
     steps:
       - name: "It's Day"
         run: echo "$MESSAGE, Today is $DAY_ON_WEEK!"
+
+  check-var2:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "It's Day"
+        run: echo "$MESSAGE, Today is $DAY_ON_WEEK!"
