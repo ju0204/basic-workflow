@@ -1,23 +1,17 @@
-### github-github-action-04.yml
-
 name: Test Github Actions-04
 run-name: Run Github Actions inputs, outputs, needs
-on: 
+
+on:
   workflow_dispatch:
     inputs:
       name:
         description: '이름'
         required: true
         default: 'INPUT'
-  
+
 jobs:
-  input-data: 
+  input-data:
     runs-on: ubuntu-latest
     steps:
       - name: Print input data
         run: echo "Hello, ${{ github.event.inputs.name }}"
-
-
-        
-
-  
